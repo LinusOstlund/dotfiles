@@ -1,0 +1,5 @@
+[user]
+	name = Linus Östlund
+	email = linusostlund2@gmail.com
+[core]
+	excludesfile = /Users/linusostlund/.gitignore_global

@@ -1,0 +1,48 @@
+# Solarized-inspired Starship prompt
+# Recreates the look of the old git-prompt.zsh
+
+# Four-line format: user/host/dir, git info, cloud/context, then prompt
+format = """
+$username at $hostname in $directory
+ $git_branch$git_status
+ $azure$gcloud$aws$kubernetes$docker_context$nodejs$python$rust$java$golang
+$character"""
+
+[username]
+style_user = "bold #cb4b16"  # Solarized orange
+style_root = "bold #dc322f"  # Solarized red
+show_always = true
+format = "[$user]($style)"
+
+[hostname]
+ssh_only = false
+style = "bold #b58900"  # Solarized yellow
+format = "[$hostname]($style)"
+
+[directory]
+style = "bold #859900"  # Solarized green
+truncation_length = 0
+truncate_to_repo = false
+format = "[$path]($style)"
+
+[git_branch]
+style = "#6c71c4"  # Solarized violet
+format = "on [$branch]($style)"
+
+[git_status]
+style = "#268bd2"  # Solarized blue
+format = " [\\[$all_status$ahead_behind\\]]($style)"
+conflicted = "="
+ahead = "⇡"
+behind = "⇣"
+diverged = "⇕"
+untracked = "?"
+stashed = "$"
+modified = "!"
+staged = "+"
+renamed = "»"
+deleted = "✘"
+
+[character]
+success_symbol = "[\\$](bold white)"
+error_symbol = "[\\$](bold #dc322f)"  # Solarized red on error
