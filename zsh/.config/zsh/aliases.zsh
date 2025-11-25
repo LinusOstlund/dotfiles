@@ -11,6 +11,14 @@ alias tdot="code ~/.tmux.conf"
 alias tr="tmux source-file ~/.tmux.conf"
 # Reload everything
 alias r="zr && tr"
+# Launch tmux with dev layout
+alias tdev="~/dotfiles/tmux/layouts/dev.sh"
+# List all tmux sessions
+alias tls="tmux ls"
+# Kill current tmux session
+alias tkill="tmux kill-session"
+# Attach to tmux session
+alias ta="tmux attach -t"
 
 # Directory navigation
 # Go up one directory
