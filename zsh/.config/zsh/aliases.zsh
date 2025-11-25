@@ -48,6 +48,11 @@ if command -v bat >/dev/null 2>&1; then
   alias cat="bat --paging=never"
 fi
 
+# Use tlrc for simplified man pages
+if command -v tlrc >/dev/null 2>&1; then
+  alias man='tldr'
+fi
+
 # Git aliases
 # Show git status
 alias gs="git status"
