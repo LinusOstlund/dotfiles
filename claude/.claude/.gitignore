@@ -1,0 +1,14 @@
+# Ignore Claude runtime data (these are generated, not config)
+history.jsonl
+debug/
+file-history/
+projects/
+session-env/
+shell-snapshots/
+statsig/
+todos/
+ide/
+
+# Ignore local settings
+settings.json
+*.local.md
