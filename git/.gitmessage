@@ -1,8 +1,24 @@
 
-# the [What] is one of feat / fix / chore / docs / style / refactor / perf / test / ci / build / revert
-# [What]: Short description of the change in present tense
+# Type your commit above in this format:
+# <type>(<scope>): <description>
 #
-# 72-character wrapped longer description. This should answer:
-#   * Why was this change necessary?
-#   * How does it address the problem?
-#   * Are there any side effects?
+# Example: feat(auth): add JWT token validation
+#
+# Common types:
+#   feat:     New feature
+#   fix:      Bug fix
+#   docs:     Documentation changes
+#   style:    Code style/formatting (no logic change)
+#   refactor: Code restructuring (no behavior change)
+#   perf:     Performance improvement
+#   test:     Adding or updating tests
+#   chore:    Maintenance, deps, config, etc
+#   ci:       CI/CD pipeline changes
+#   build:    Build system changes
+#   revert:   Revert a previous commit
+#
+# Scope (optional): Component affected (auth, api, ui, etc)
+# Description: Short summary (≤50 chars), present tense, no period
+#
+# Body (optional, add blank line after subject):
+# Explain WHY (not how). Wrap at 72 chars.
