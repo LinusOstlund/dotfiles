@@ -1,7 +1,6 @@
 
-
-# 50-character subject line
-#   * Present tense
+# the [What] is one of feat / fix / chore / docs / style / refactor / perf / test / ci / build / revert
+# [What]: Short description of the change in present tense
 #
 # 72-character wrapped longer description. This should answer:
 #   * Why was this change necessary?
