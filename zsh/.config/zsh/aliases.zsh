@@ -87,21 +87,22 @@ if command -v yq >/dev/null 2>&1; then
 fi
 
 # Git aliases cheat sheet - show all git aliases
-gitwtf() {
+wtfgit() {
   echo "\033[1;38;5;166m═══ Git Aliases Cheat Sheet ═══\033[0m"
   echo ""
   echo "\033[1;38;5;64mZsh Aliases (use directly):\033[0m"
   echo ""
-  alias | grep "^g[a-z]*=" | while read line; do
-    cmd=$(echo "$line" | cut -d'=' -f1)
-    full=$(echo "$line" | cut -d'=' -f2- | tr -d "'")
+  alias | grep "^g[a-z]*=" | sed "s/=/\t/" | while IFS=$'\t' read cmd full; do
+    full=$(echo "$full" | sed "s/^'//" | sed "s/'$//")
     echo "  \033[38;5;136m$cmd\033[0m → \033[38;5;33m$full\033[0m"
   done
   echo ""
   echo "\033[1;38;5;64mGitconfig Aliases (use with 'git'):\033[0m"
   echo ""
-  git config --get-regexp '^alias\.' | sed 's/alias\.//' | while read key value; do
-    echo "  \033[38;5;136mgit $key\033[0m → \033[38;5;33m$value\033[0m"
+  git config --get-regexp '^alias\.' | sed 's/alias\.//' | while read -r key value; do
+    # Get the full line after the key
+    full=$(git config --get "alias.$key")
+    echo "  \033[38;5;136mgit $key\033[0m → \033[38;5;33m$full\033[0m"
   done
   echo ""
   echo "\033[38;5;125mTip:\033[0m Zsh aliases are faster to type, gitconfig aliases work everywhere!"

@@ -20,3 +20,13 @@ zstyle ':completion:*:*:*:*:descriptions' format '%F{green}↓ %d %f'
 
 # Group completion results by type
 zstyle ':completion:*' group-name ''
+
+# Pretty colors for completion menu (Solarized-ish)
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*:*:*:*:default' list-colors 'ma=48;5;33;1' # Highlight in blue
+
+# Color git aliases differently
+zstyle ':completion:*:git:*' list-colors '=(#b)(*alias*)=38;5;166=38;5;33' # Orange for aliases
+
+# Show more details for git completions
+zstyle ':completion:*:*:git:*' verbose yes
