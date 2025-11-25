@@ -9,6 +9,8 @@ alias zr="source ~/.zshrc"
 alias tdot="code ~/.tmux.conf"
 # Reload tmux config
 alias tr="tmux source-file ~/.tmux.conf"
+# Reload everything
+alias r="zr && tr"
 
 # Directory navigation
 # Go up one directory
@@ -18,18 +20,18 @@ alias ...="cd ../.."
 # Go up three directories
 alias ....="cd ../../../"
 
-# Better ls (macOS uses -G for color, GNU ls uses --color=auto)
-# On macOS, use BSD ls with -G flag
-# If you install GNU coreutils, gls will be available
-# List with colors
-alias ls="ls -G"
-# List all files with details (size, permissions, etc.)
-alias ll="ls -aslG"
-
-# If GNU ls is installed via brew coreutils, use it instead
-if command -v gls >/dev/null 2>&1; then
-  alias ls="gls --color=auto"
-  alias ll="gls -asl --color=auto"
+# Better ls using eza (with Nerd Font icons)
+if command -v eza >/dev/null 2>&1; then
+  # List with colors and icons
+  alias ls="eza --icons"
+  # List all files with details (size, permissions, etc.)
+  alias ll="eza --icons --long --all --header --git"
+  # List with grid layout
+  alias la="eza --icons --all"
+else
+  # Fallback to BSD ls (macOS default)
+  alias ls="ls -G"
+  alias ll="ls -aslG"
 fi
 
 # Use bat instead of cat (with --paging=never to not break pipes)
@@ -61,52 +63,29 @@ alias gdc="git diff --cached"
 # Clone a repository
 alias gcl="git clone"
 
-# Tree command aliases (if tree is installed)
-if command -v tree >/dev/null 2>&1; then
-  # Set LS_COLORS to match macOS BSD ls color scheme
-  # This makes tree colors consistent with ls
-  export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'
+# Tree command aliases using eza (with Nerd Font icons)
+if command -v eza >/dev/null 2>&1; then
+  alias tree="eza --tree --icons"
 
-  # Show tree with colors
-  alias tree="tree -C"
+  alias t="eza --tree --icons"
   # Tree with depth 1 (current directory only)
-  alias t1="tree -L 1 -C"
-  # Tree with depth 2
-  alias t2="tree -L 2 -C"
-  # Tree with depth 3
-  alias t3="tree -L 3 -C"
-  # Tree with depth 4
-  alias t4="tree -L 4 -C"
-  # Tree respecting .gitignore
-  alias t="tree -C --gitignore"
+  alias t1="eza --tree --icons --level=1"
+  alias t2="eza --tree --icons --level=2"
+  alias t3="eza --tree --icons --level=3"
+  alias t4="eza --tree --icons --level=4"
+
+  # Tree respecting .gitignore (shorthand)
+  alias ti="eza --tree --icons --git-ignore"
+  alias t1i="eza --tree --icons --level=1 --git-ignore"
+  alias t2i="eza --tree --icons --level=2 --git-ignore"
+  alias t3i="eza --tree --icons --level=3 --git-ignore"
+  alias t4i="eza --tree --icons --level=4 --git-ignore"
 fi
 
 # YQ helper function
 if command -v yq >/dev/null 2>&1; then
   json2yaml() { yq -Poy "$@"; }
 fi
-
-# Git aliases cheat sheet - show all git aliases
-wtfgit() {
-  echo "\033[1;38;5;166m═══ Git Aliases Cheat Sheet ═══\033[0m"
-  echo ""
-  echo "\033[1;38;5;64mZsh Aliases (use directly):\033[0m"
-  echo ""
-  alias | grep "^g[a-z]*=" | sed "s/=/\t/" | while IFS=$'\t' read cmd full; do
-    full=$(echo "$full" | sed "s/^'//" | sed "s/'$//")
-    echo "  \033[38;5;136m$cmd\033[0m → \033[38;5;33m$full\033[0m"
-  done
-  echo ""
-  echo "\033[1;38;5;64mGitconfig Aliases (use with 'git'):\033[0m"
-  echo ""
-  git config --get-regexp '^alias\.' | sed 's/alias\.//' | while read -r key value; do
-    # Get the full line after the key
-    full=$(git config --get "alias.$key")
-    echo "  \033[38;5;136mgit $key\033[0m → \033[38;5;33m$full\033[0m"
-  done
-  echo ""
-  echo "\033[38;5;125mTip:\033[0m Zsh aliases are faster to type, gitconfig aliases work everywhere!"
-}
 
 # Grep cheat sheet - show common grep usage examples
 wtfgrep() {
