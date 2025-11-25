@@ -22,15 +22,16 @@ alias ....="cd ../../../"
 
 # Better ls using eza (with Nerd Font icons)
 if command -v eza >/dev/null 2>&1; then
-  # List with colors and icons
-  alias ls="eza --icons"
+  # List with colors, icons, and directories first
+  alias ls="eza --icons --group-directories-first"
+  # List with --all
+  alias lsa="eza --icons --group-directories-first --all"
   # List all files with details (size, permissions, etc.)
-  alias ll="eza --icons --long --all --header --git"
+  alias ll="eza --icons --group-directories-first --long --all --header --git"
   # List with grid layout
-  alias la="eza --icons --all"
+  alias la="eza --icons --group-directories-first --all"
 else
   # Fallback to BSD ls (macOS default)
-  alias ls="ls -G"
   alias ll="ls -aslG"
 fi
 
@@ -65,21 +66,25 @@ alias gcl="git clone"
 
 # Tree command aliases using eza (with Nerd Font icons)
 if command -v eza >/dev/null 2>&1; then
-  alias tree="eza --tree --icons"
-
-  alias t="eza --tree --icons"
+  alias t="eza --tree --icons --group-directories-first"
+  alias ta="eza --tree --icons --group-directories-first --all"
   # Tree with depth 1 (current directory only)
-  alias t1="eza --tree --icons --level=1"
-  alias t2="eza --tree --icons --level=2"
-  alias t3="eza --tree --icons --level=3"
-  alias t4="eza --tree --icons --level=4"
+  alias t1="eza --tree --icons --group-directories-first --level=1"
+  alias t2="eza --tree --icons --group-directories-first --level=2"
+  alias t3="eza --tree --icons --group-directories-first --level=3"
+  alias t4="eza --tree --icons --group-directories-first --level=4"
+  # Tree with --all and depth
+  alias t1a="eza --tree --icons --group-directories-first --level=1 --all"
+  alias t2a="eza --tree --icons --group-directories-first --level=2 --all"
+  alias t3a="eza --tree --icons --group-directories-first --level=3 --all"
+  alias t4a="eza --tree --icons --group-directories-first --level=4 --all"
 
   # Tree respecting .gitignore (shorthand)
-  alias ti="eza --tree --icons --git-ignore"
-  alias t1i="eza --tree --icons --level=1 --git-ignore"
-  alias t2i="eza --tree --icons --level=2 --git-ignore"
-  alias t3i="eza --tree --icons --level=3 --git-ignore"
-  alias t4i="eza --tree --icons --level=4 --git-ignore"
+  alias ti="eza --tree --icons --group-directories-first --git-ignore"
+  alias t1i="eza --tree --icons --group-directories-first --level=1 --git-ignore"
+  alias t2i="eza --tree --icons --group-directories-first --level=2 --git-ignore"
+  alias t3i="eza --tree --icons --group-directories-first --level=3 --git-ignore"
+  alias t4i="eza --tree --icons --group-directories-first --level=4 --git-ignore"
 fi
 
 # YQ helper function

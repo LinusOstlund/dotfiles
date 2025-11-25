@@ -1,12 +1,13 @@
 # Solarized-inspired Starship prompt
 # Recreates the look of the old git-prompt.zsh
 
-# Four-line format: user/host/dir, git info, cloud/context, then prompt
+# Four-line format: user/host/dir, git info, cloud/context, blank line, then prompt
 format = """
 $username at $hostname in $directory
  $git_branch$git_status
  $azure$gcloud$aws$kubernetes$docker_context$nodejs$python$rust$java$golang
-$character"""
+$character
+"""
 
 [username]
 style_user = "bold #cb4b16"  # Solarized orange

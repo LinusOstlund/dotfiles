@@ -6,7 +6,7 @@ autoload -U compinit; compinit
 _comp_options+=(globdots)   # include hidden files
 
 # Completion behavior
-setopt MENU_COMPLETE        # Automatically highlight first element of completion menu
+setopt AUTO_MENU            # Show completion menu on successive tab press
 setopt AUTO_LIST            # Automatically list choices on ambiguous completion
 
 # Use select menu for completions

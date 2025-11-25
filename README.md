@@ -3,6 +3,8 @@ Vibekodade dotfiler. Vad kan möjligen gå fel?
 
 ## Setup Instructions
 
+**TODO**: fixa detta fina förslaget: https://anhari.dev/blog/saving-vscode-settings-in-your-dotfiles
+
 ### Prerequisites
 ```bash
 # Install Homebrew if not already installed

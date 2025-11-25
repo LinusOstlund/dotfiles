@@ -1,42 +1,85 @@
+# Homebrew Brewfile for dotfiles setup
+# Install with: brew bundle --file ~/dotfiles/brew/Brewfile
+
+# Taps
 tap "databricks/tap"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.14"
-# Shell extension to jump to frequently used directories
-brew "autojump"
-# Clone of cat(1) with syntax highlighting and Git integration
-brew "bat"
-# Command-line fuzzy finder written in Go
-brew "fzf"
-# Interactive git commands in the terminal
-brew "forgit"
-# GitHub command-line tool
-brew "gh"
-# Interpreter for PostScript and PDF
-brew "ghostscript"
-# Graph visualization software from AT&T and Bell Labs
-brew "graphviz"
-# Tools and libraries to manipulate images in many formats
-brew "imagemagick"
-# Run a Kubernetes cluster locally
-brew "minikube"
-# Open-source, cross-platform JavaScript runtime environment
-brew "node"
+tap "homebrew/cask-fonts"
+
+# Shell & Terminal Tools
+# =====================
 # Terminal multiplexer
 brew "tmux"
-# Display directories as trees (with optional color/HTML output)
+# Cross-shell prompt with git integration
+brew "starship"
+# Modern replacement for ls
+brew "eza"
+# Clone of cat with syntax highlighting
+brew "bat"
+# Command-line fuzzy finder
+brew "fzf"
+# Shell extension to jump to frequently used directories
+brew "autojump"
+# Display directories as trees
 brew "tree"
-# Process YAML, JSON, XML, CSV and properties documents from the CLI
+# Symlink farm manager for dotfiles
+brew "stow"
+
+# Git Tools
+# =========
+# GitHub command-line tool
+brew "gh"
+# Interactive git commands with fzf
+brew "forgit"
+# Fancy diffs for git
+brew "diff-so-fancy"
+
+# Development Tools
+# =================
+# JavaScript runtime
+brew "node"
+# Kubernetes command-line tool
+brew "kubernetes-cli"
+# Run a Kubernetes cluster locally
+brew "minikube"
+# Process YAML, JSON, XML, CSV documents
 brew "yq"
-# Command-line interface for the Databricks platform
+
+# Cloud & Infrastructure
+# ======================
+# Command-line interface for Databricks
 brew "databricks/tap/databricks"
+
+# Image Processing
+# ================
+# PostScript and PDF interpreter
+brew "ghostscript"
+# Graph visualization software
+brew "graphviz"
+# Image manipulation tools
+brew "imagemagick"
+# OCR engine
+brew "tesseract"
+
+# Python
+# ======
+# Python 3.14
+brew "python@3.14"
+
+# Casks (GUI Applications)
+# ========================
 # Terminal-based AI coding assistant
 cask "claude-code"
-# Set of tools to manage resources and applications hosted on Google Cloud
+# Google Cloud CLI tools
 cask "gcloud-cli"
-# Terminal emulator that uses platform-native UI and GPU acceleration
+# GPU-accelerated terminal emulator
 cask "ghostty"
-# Reverse proxy, secure introspectable tunnels to localhost
+# Secure tunnels to localhost
 cask "ngrok"
+# Nerd Font for terminal icons
+cask "font-fira-code-nerd-font"
+
+# VS Code Extensions
+# ==================
 vscode "altimateai.vscode-altimate-mcp-server"
 vscode "anthropic.claude-code"
 vscode "charliermarsh.ruff"
