@@ -13,8 +13,9 @@ ZSHCONFIG="$HOME/.config/zsh"
 [ -f "$ZSHCONFIG/plugins.zsh" ]    && source "$ZSHCONFIG/plugins.zsh"
 [ -f "$ZSHCONFIG/prompt.zsh" ]     && source "$ZSHCONFIG/prompt.zsh"
 
-# Welcome message
-echo "Hello, $USER! Your .zshrc is loaded."
+# Welcome message with Solarized colors
+echo ""
+echo "Hello, \033[1;38;5;166m$USER!\033[0m Your \033[38;5;64m.zshrc\033[0m is loaded."
 echo "I know you are paranoid, so here's the date and time:"
-echo "Today is $(date +"%A, %B %d, %Y")."
-echo "Current time: $(date +"%T")."
+echo "Today we're speaking at \033[38;5;136m$(date +"%T")\033[0m on \033[1;38;5;33m$(date +"%A, %B %d, %Y")\033[0m"
+

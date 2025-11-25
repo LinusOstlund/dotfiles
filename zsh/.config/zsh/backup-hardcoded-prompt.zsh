@@ -1,5 +1,6 @@
 # Solarized Zsh Git Prompt
 # Original concept from bash version by @necolas / @paulirish
+# In case the starshipthingie prompt goes broke, this prompt was rälly nice.
 
 # --- IMPORTANT FOR ZSH PROMPT SUBSTITUTION ---
 setopt PROMPT_SUBST

@@ -1,14 +1,20 @@
 # FZF configuration
 
-# Source FZF script if it exists
-FZF_CONFIG=~/.fzf.sh
-if [[ -x "$(command -v fzf)" ]] && [[ -f "$FZF_CONFIG" ]]; then
-  source "$FZF_CONFIG"
+# Source FZF keybindings and completions from Homebrew
+if command -v fzf >/dev/null 2>&1; then
+  # Source FZF keybindings (Ctrl+R for history, Ctrl+T for files, Alt+C for cd)
+  [ -f /opt/homebrew/opt/fzf/shell/key-bindings.zsh ] && source /opt/homebrew/opt/fzf/shell/key-bindings.zsh
+
+  # Source FZF completions
+  [ -f /opt/homebrew/opt/fzf/shell/completion.zsh ] && source /opt/homebrew/opt/fzf/shell/completion.zsh
 fi
 
-# Make FZF previews nicer using bat if installed
+# FZF default options (no preview for history search)
+export FZF_DEFAULT_OPTS="--height=70%"
+
+# FZF Ctrl+T options (file search with preview using bat)
 if command -v bat >/dev/null 2>&1; then
-  export FZF_DEFAULT_OPTS="--height=70% --preview 'bat --style=numbers --color=always {} 2>/dev/null | head -200' --bind='ctrl-/:toggle-preview'"
+  export FZF_CTRL_T_OPTS="--preview 'bat --style=numbers --color=always {} 2>/dev/null | head -200'"
 fi
 
 # Custom FZF completion command

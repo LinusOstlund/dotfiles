@@ -1,4 +1,5 @@
 På skakiga Bambiben gör jag mitt första repo för dotfiler. Jag har läst på internet att man ska använda GNU Stow. Och Claude Kod. Så det gör jag.
+Vibekodade dotfiler. Vad kan möjligen gå fel?
 
 ## Setup Instructions
 
