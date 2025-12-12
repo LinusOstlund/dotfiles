@@ -23,7 +23,8 @@ aerospace reload-config
 |--------|---------|
 | **Navigate windows** | Hyperkey + ← ↓ ↑ → |
 | **Move windows** | cmd+alt+ctrl + ← ↓ ↑ → |
-| **Resize** | Hyperkey + h (shrink) / l (grow) |
+| **Resize (smart)** | Hyperkey + h (shrink) / l (grow) |
+| **Resize (vertical)** | Hyperkey + k (taller) / i (shorter) |
 | **Move workspace to monitor** | Hyperkey + § |
 | **Toggle layout** | cmd+alt+ctrl + § |
 

@@ -119,9 +119,11 @@ on-mode-changed = []
     cmd-alt-ctrl-up = 'move up'
     cmd-alt-ctrl-right = 'move right'
 
-    # RESIZE - Hyperkey + h/l
+    # RESIZE - Hyperkey + h/l (smart), i/k (vertical)
     cmd-shift-ctrl-alt-h = 'resize smart -50'
     cmd-shift-ctrl-alt-l = 'resize smart +50'
+    cmd-shift-ctrl-alt-k = 'resize height +50'
+    cmd-shift-ctrl-alt-i = 'resize height -50'
 
     # MOVE WORKSPACE TO MONITOR - Hyperkey + § (frequent with multiple monitors)
     cmd-shift-ctrl-alt-sectionSign = 'move-workspace-to-monitor --wrap-around next'
