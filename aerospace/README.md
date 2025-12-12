@@ -24,7 +24,8 @@ aerospace reload-config
 | **Navigate windows** | Hyperkey + ← ↓ ↑ → |
 | **Move windows** | cmd+alt+ctrl + ← ↓ ↑ → |
 | **Resize** | Hyperkey + h (shrink) / l (grow) |
-| **Toggle layout** | Hyperkey + § |
+| **Move workspace to monitor** | Hyperkey + § |
+| **Toggle layout** | cmd+alt+ctrl + § |
 
 ### Workspaces
 
@@ -35,7 +36,6 @@ aerospace reload-config
 | **Switch workspace** | Hyperkey + 1-9, q, w, e, r, t, y |
 | **Move to workspace** | cmd+alt+ctrl + 1-9, q, w, e, r, t, y |
 | **Workspace back/forth** | Hyperkey + Tab |
-| **Move WS to monitor** | Hyperkey + ` |
 
 ### Service Mode
 
