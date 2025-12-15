@@ -7,7 +7,13 @@ config-version = 2
 
 # You can use it to add commands that run after AeroSpace startup.
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
-after-startup-command = []
+after-startup-command = [
+    # JankyBorders - colored window borders for focused/unfocused windows
+    # active_color: lavender/blue for focused window
+    # inactive_color: dark gray for unfocused windows
+    # width: 6.0 pixels
+    'exec-and-forget borders active_color=0xffb4befe inactive_color=0xff45475a width=6.0'
+]
 
 # Start AeroSpace at login
 start-at-login = true
@@ -46,12 +52,37 @@ automatically-unhide-macos-hidden-apps = false
 # This config version is only available since 'config-version = 2'
 # Fallback value (if you omit the key): persistent-workspaces = []
 persistent-workspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9",
-                         "Q", "W", "E", "R", "T", "Y"]
+                         "Q", "E", "R", "T", "Y", "V", "C"]
 
 # A callback that runs every time binding mode changes
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
 on-mode-changed = []
+
+# ========================================
+# AUTO-WORKSPACE ASSIGNMENTS
+# ========================================
+# Apps automatically open on designated workspaces (but can be moved manually)
+
+[[on-window-detected]]
+if.app-id = 'com.slack.Slack'
+run = 'move-node-to-workspace 1'
+
+[[on-window-detected]]
+if.app-id = 'com.spotify.client'
+run = 'move-node-to-workspace 2'
+
+[[on-window-detected]]
+if.app-id = 'com.google.Chrome'
+run = 'move-node-to-workspace C'
+
+[[on-window-detected]]
+if.app-id = 'com.microsoft.VSCode'
+run = 'move-node-to-workspace V'
+
+[[on-window-detected]]
+if.app-id = 'com.mitchellh.ghostty'
+run = 'move-node-to-workspace T'
 
 # Possible values: (qwerty|dvorak|colemak)
 # See https://nikitabobko.github.io/AeroSpace/guide#key-mapping
@@ -101,37 +132,27 @@ on-mode-changed = []
     # HYPERKEY CONFIGURATION
     # ========================================
     # Hyperkey = cmd+shift+ctrl+alt (caps lock via BetterTouchTool/Karabiner)
-    # Lighter = cmd+alt+ctrl (for less frequent actions)
     #
-    # NOTE: Avoids Homerow conflicts (f, s, j are taken)
-    # Swedish keyboard friendly (uses § key, avoids Alt conflicts)
+    # MODE-BASED WORKFLOW:
+    #   - Monitor mode (Hyperkey + m): Multi-monitor operations
+    #   - Window mode (Hyperkey + w): Resize, join, float/tile
+    #   - Assign mode (Hyperkey + a): Move window to workspace
+    #   - Service mode (Hyperkey + Esc): Config, layout reset
     # ========================================
 
-    # NAVIGATION - Hyperkey + Arrows (frequent, easy via caps lock)
+    # NAVIGATION - Hyperkey + Arrows
     cmd-shift-ctrl-alt-left = 'focus left'
     cmd-shift-ctrl-alt-down = 'focus down'
     cmd-shift-ctrl-alt-up = 'focus up'
     cmd-shift-ctrl-alt-right = 'focus right'
 
-    # MOVE WINDOWS - cmd+alt+ctrl + Arrows (less frequent, harder combo)
+    # MOVE WINDOWS - cmd+alt+ctrl + Arrows (directional movement within workspace)
     cmd-alt-ctrl-left = 'move left'
     cmd-alt-ctrl-down = 'move down'
     cmd-alt-ctrl-up = 'move up'
     cmd-alt-ctrl-right = 'move right'
 
-    # RESIZE - Hyperkey + h/l (smart), i/k (vertical)
-    cmd-shift-ctrl-alt-h = 'resize smart -50'
-    cmd-shift-ctrl-alt-l = 'resize smart +50'
-    cmd-shift-ctrl-alt-k = 'resize height +50'
-    cmd-shift-ctrl-alt-i = 'resize height -50'
-
-    # MOVE WORKSPACE TO MONITOR - Hyperkey + § (frequent with multiple monitors)
-    cmd-shift-ctrl-alt-sectionSign = 'move-workspace-to-monitor --wrap-around next'
-
-    # LAYOUT TOGGLE - cmd+alt+ctrl + § (rare)
-    cmd-alt-ctrl-sectionSign = 'layout tiles horizontal vertical'
-
-    # WORKSPACES - Hyperkey + 1-9, q, w, e, r, t, y
+    # WORKSPACES - Hyperkey + 1-9, q, e, r, t, y, v, c
     cmd-shift-ctrl-alt-1 = 'workspace 1'
     cmd-shift-ctrl-alt-2 = 'workspace 2'
     cmd-shift-ctrl-alt-3 = 'workspace 3'
@@ -142,46 +163,114 @@ on-mode-changed = []
     cmd-shift-ctrl-alt-8 = 'workspace 8'
     cmd-shift-ctrl-alt-9 = 'workspace 9'
     cmd-shift-ctrl-alt-q = 'workspace Q'
-    cmd-shift-ctrl-alt-w = 'workspace W'
+    # Note: cmd-shift-ctrl-alt-w reserved for Window Mode
     cmd-shift-ctrl-alt-e = 'workspace E'
     cmd-shift-ctrl-alt-r = 'workspace R'
     cmd-shift-ctrl-alt-t = 'workspace T'
     cmd-shift-ctrl-alt-y = 'workspace Y'
-
-    # MOVE TO WORKSPACE - cmd+alt+ctrl + 1-9, q, w, e, r, t, y
-    cmd-alt-ctrl-1 = 'move-node-to-workspace 1'
-    cmd-alt-ctrl-2 = 'move-node-to-workspace 2'
-    cmd-alt-ctrl-3 = 'move-node-to-workspace 3'
-    cmd-alt-ctrl-4 = 'move-node-to-workspace 4'
-    cmd-alt-ctrl-5 = 'move-node-to-workspace 5'
-    cmd-alt-ctrl-6 = 'move-node-to-workspace 6'
-    cmd-alt-ctrl-7 = 'move-node-to-workspace 7'
-    cmd-alt-ctrl-8 = 'move-node-to-workspace 8'
-    cmd-alt-ctrl-9 = 'move-node-to-workspace 9'
-    cmd-alt-ctrl-q = 'move-node-to-workspace Q'
-    cmd-alt-ctrl-w = 'move-node-to-workspace W'
-    cmd-alt-ctrl-e = 'move-node-to-workspace E'
-    cmd-alt-ctrl-r = 'move-node-to-workspace R'
-    cmd-alt-ctrl-t = 'move-node-to-workspace T'
-    cmd-alt-ctrl-y = 'move-node-to-workspace Y'
+    cmd-shift-ctrl-alt-v = 'workspace V'
+    cmd-shift-ctrl-alt-c = 'workspace C'
 
     # WORKSPACE BACK-AND-FORTH - Hyperkey + Tab
     cmd-shift-ctrl-alt-tab = 'workspace-back-and-forth'
 
-    # SERVICE MODE - Hyperkey + Escape
-    cmd-shift-ctrl-alt-esc = 'mode service'
+    # MODE TRIGGERS
+    cmd-shift-ctrl-alt-m = 'mode monitor'    # Hyperkey + m = Monitor Mode
+    cmd-shift-ctrl-alt-w = 'mode window'     # Hyperkey + w = Window Mode
+    cmd-shift-ctrl-alt-a = 'mode assign'     # Hyperkey + a = Assign Mode
+    cmd-shift-ctrl-alt-esc = 'mode service'  # Hyperkey + Esc = Service Mode
 
-# 'service' binding mode declaration.
-# See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
-# Enter with: Hyperkey + Escape
+# ========================================
+# MONITOR MODE - Hyperkey + m
+# ========================================
+# Multi-monitor workspace and window management
+[mode.monitor.binding]
+    # Focus monitors
+    left = 'focus-monitor left'
+    right = 'focus-monitor right'
+
+    # Move workspace to monitor
+    shift-left = 'move-workspace-to-monitor --wrap-around prev'
+    shift-right = 'move-workspace-to-monitor --wrap-around next'
+
+    # Move current window to next monitor
+    m = ['move-node-to-monitor --wrap-around next', 'mode main']
+
+    # Exit monitor mode
+    esc = 'mode main'
+    enter = 'mode main'
+    space = 'mode main'
+
+# ========================================
+# ASSIGN MODE - Hyperkey + a
+# ========================================
+# Move current window to workspace (easier than cmd+alt+ctrl combo)
+[mode.assign.binding]
+    # Move to number workspaces
+    1 = ['move-node-to-workspace 1', 'mode main']
+    2 = ['move-node-to-workspace 2', 'mode main']
+    3 = ['move-node-to-workspace 3', 'mode main']
+    4 = ['move-node-to-workspace 4', 'mode main']
+    5 = ['move-node-to-workspace 5', 'mode main']
+    6 = ['move-node-to-workspace 6', 'mode main']
+    7 = ['move-node-to-workspace 7', 'mode main']
+    8 = ['move-node-to-workspace 8', 'mode main']
+    9 = ['move-node-to-workspace 9', 'mode main']
+
+    # Move to letter workspaces
+    q = ['move-node-to-workspace Q', 'mode main']
+    e = ['move-node-to-workspace E', 'mode main']
+    r = ['move-node-to-workspace R', 'mode main']
+    t = ['move-node-to-workspace T', 'mode main']
+    y = ['move-node-to-workspace Y', 'mode main']
+    v = ['move-node-to-workspace V', 'mode main']
+    c = ['move-node-to-workspace C', 'mode main']
+
+    # Exit assign mode
+    esc = 'mode main'
+    enter = 'mode main'
+    space = 'mode main'
+
+# ========================================
+# WINDOW MODE - Hyperkey + w
+# ========================================
+# Window resizing, joining, and float/tile management
+[mode.window.binding]
+    # Resize smart (horizontal)
+    h = 'resize smart -50'
+    l = 'resize smart +50'
+
+    # Resize vertical
+    k = 'resize height +50'
+    i = 'resize height -50'
+
+    # Join windows
+    left = ['join-with left', 'mode main']
+    down = ['join-with down', 'mode main']
+    up = ['join-with up', 'mode main']
+    right = ['join-with right', 'mode main']
+
+    # Layout switching
+    f = ['layout floating tiling', 'mode main']  # Float/tile toggle
+    a = ['layout accordion', 'mode main']         # Switch to accordion
+    t = ['layout tiles', 'mode main']             # Switch to tiles
+    minus = ['layout tiles horizontal', 'mode main']  # Horizontal (side-by-side --)
+    7 = ['layout tiles vertical', 'mode main']        # Vertical (stacked ||)
+
+    # Balance all windows
+    b = ['balance-sizes', 'mode main']
+
+    # Exit window mode
+    esc = 'mode main'
+    enter = 'mode main'
+    space = 'mode main'
+
+# ========================================
+# SERVICE MODE - Hyperkey + Esc
+# ========================================
+# Config reload, layout reset, and emergency operations
 [mode.service.binding]
     esc = ['reload-config', 'mode main']
     r = ['flatten-workspace-tree', 'mode main'] # reset layout
     t = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
     backspace = ['close-all-windows-but-current', 'mode main']
-
-    # JOIN WINDOWS - Arrow keys (avoid f conflict with Homerow)
-    left = ['join-with left', 'mode main']
-    down = ['join-with down', 'mode main']
-    up = ['join-with up', 'mode main']
-    right = ['join-with right', 'mode main']
