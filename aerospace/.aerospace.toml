@@ -52,7 +52,7 @@ automatically-unhide-macos-hidden-apps = false
 # This config version is only available since 'config-version = 2'
 # Fallback value (if you omit the key): persistent-workspaces = []
 persistent-workspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9",
-                         "Q", "E", "R", "T", "Y", "V", "C"]
+                         "Q", "E", "R", "T", "Y", "G", "B", "V", "N", "C"]
 
 # A callback that runs every time binding mode changes
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -66,7 +66,7 @@ on-mode-changed = []
 
 [[on-window-detected]]
 if.app-id = 'com.slack.Slack'
-run = 'move-node-to-workspace 1'
+run = 'move-node-to-workspace C'
 
 [[on-window-detected]]
 if.app-id = 'com.spotify.client'
@@ -74,11 +74,19 @@ run = 'move-node-to-workspace 2'
 
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome'
-run = 'move-node-to-workspace C'
+run = 'move-node-to-workspace B'
+
+[[on-window-detected]]
+if.app-id = 'com.openai.chat'
+run = 'move-node-to-workspace G'
 
 [[on-window-detected]]
 if.app-id = 'com.microsoft.VSCode'
 run = 'move-node-to-workspace V'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.Notes'
+run = 'move-node-to-workspace N'
 
 [[on-window-detected]]
 if.app-id = 'com.mitchellh.ghostty'
@@ -104,6 +112,19 @@ run = 'move-node-to-workspace T'
     outer.bottom =     5
     outer.top =        5
     outer.right =      5
+
+# ========================================
+# WORKSPACE-TO-MONITOR ASSIGNMENTS
+# ========================================
+# Note: AeroSpace only supports forcing assignments (workspaces locked to monitors)
+# If you prefer manual control, leave this section commented out
+# See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
+#
+# [workspace-to-monitor-force-assignment]
+#     V = 'main'                                    # VS Code → Main monitor
+#     C = 'built-in'                                # Slack → Built-in Retina Display
+#     T = ['2', 'built-in', 'main']                 # Terminal → Secondary external (fallback: Retina → Main)
+#     B = 'built-in'                                # Browser → Built-in Retina Display
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -140,19 +161,19 @@ run = 'move-node-to-workspace T'
     #   - Service mode (Hyperkey + Esc): Config, layout reset
     # ========================================
 
-    # NAVIGATION - Hyperkey + Arrows
-    cmd-shift-ctrl-alt-left = 'focus left'
-    cmd-shift-ctrl-alt-down = 'focus down'
-    cmd-shift-ctrl-alt-up = 'focus up'
-    cmd-shift-ctrl-alt-right = 'focus right'
+    # NAVIGATION - Hyperkey + hjkl
+    cmd-shift-ctrl-alt-h = 'focus left'
+    cmd-shift-ctrl-alt-j = 'focus down'
+    cmd-shift-ctrl-alt-k = 'focus up'
+    cmd-shift-ctrl-alt-l = 'focus right'
 
-    # MOVE WINDOWS - cmd+alt+ctrl + Arrows (directional movement within workspace)
-    cmd-alt-ctrl-left = 'move left'
-    cmd-alt-ctrl-down = 'move down'
-    cmd-alt-ctrl-up = 'move up'
-    cmd-alt-ctrl-right = 'move right'
+    # MOVE WINDOWS - cmd+alt+ctrl + hjkl (directional movement within workspace)
+    cmd-alt-ctrl-h = 'move left'
+    cmd-alt-ctrl-j = 'move down'
+    cmd-alt-ctrl-k = 'move up'
+    cmd-alt-ctrl-l = 'move right'
 
-    # WORKSPACES - Hyperkey + 1-9, q, e, r, t, y, v, c
+    # WORKSPACES - Hyperkey + 1-9, q, e, r, t, y, g, b, v, n, c
     cmd-shift-ctrl-alt-1 = 'workspace 1'
     cmd-shift-ctrl-alt-2 = 'workspace 2'
     cmd-shift-ctrl-alt-3 = 'workspace 3'
@@ -168,7 +189,10 @@ run = 'move-node-to-workspace T'
     cmd-shift-ctrl-alt-r = 'workspace R'
     cmd-shift-ctrl-alt-t = 'workspace T'
     cmd-shift-ctrl-alt-y = 'workspace Y'
+    cmd-shift-ctrl-alt-g = 'workspace G'
+    cmd-shift-ctrl-alt-b = 'workspace B'
     cmd-shift-ctrl-alt-v = 'workspace V'
+    cmd-shift-ctrl-alt-n = 'workspace N'
     cmd-shift-ctrl-alt-c = 'workspace C'
 
     # WORKSPACE BACK-AND-FORTH - Hyperkey + Tab
@@ -185,13 +209,9 @@ run = 'move-node-to-workspace T'
 # ========================================
 # Multi-monitor workspace and window management
 [mode.monitor.binding]
-    # Focus monitors
-    left = 'focus-monitor left'
-    right = 'focus-monitor right'
-
     # Move workspace to monitor
-    shift-left = 'move-workspace-to-monitor --wrap-around prev'
-    shift-right = 'move-workspace-to-monitor --wrap-around next'
+    h = 'move-workspace-to-monitor --wrap-around prev'
+    l = 'move-workspace-to-monitor --wrap-around next'
 
     # Move current window to next monitor
     m = ['move-node-to-monitor --wrap-around next', 'mode main']
@@ -223,7 +243,10 @@ run = 'move-node-to-workspace T'
     r = ['move-node-to-workspace R', 'mode main']
     t = ['move-node-to-workspace T', 'mode main']
     y = ['move-node-to-workspace Y', 'mode main']
+    g = ['move-node-to-workspace G', 'mode main']
+    b = ['move-node-to-workspace B', 'mode main']
     v = ['move-node-to-workspace V', 'mode main']
+    n = ['move-node-to-workspace N', 'mode main']
     c = ['move-node-to-workspace C', 'mode main']
 
     # Exit assign mode
@@ -236,19 +259,17 @@ run = 'move-node-to-workspace T'
 # ========================================
 # Window resizing, joining, and float/tile management
 [mode.window.binding]
-    # Resize smart (horizontal)
+    # Resize (hjkl: h=shrink width, l=grow width, j=shrink height, k=grow height)
     h = 'resize smart -50'
     l = 'resize smart +50'
-
-    # Resize vertical
+    j = 'resize height -50'
     k = 'resize height +50'
-    i = 'resize height -50'
 
-    # Join windows
-    left = ['join-with left', 'mode main']
-    down = ['join-with down', 'mode main']
-    up = ['join-with up', 'mode main']
-    right = ['join-with right', 'mode main']
+    # Join windows (rare operation)
+    shift-h = ['join-with left', 'mode main']
+    shift-j = ['join-with down', 'mode main']
+    shift-k = ['join-with up', 'mode main']
+    shift-l = ['join-with right', 'mode main']
 
     # Layout switching
     f = ['layout floating tiling', 'mode main']  # Float/tile toggle
