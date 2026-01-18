@@ -1,12 +1,16 @@
 # AeroSpace Configuration
 
-Tiling window manager for macOS with Hyperkey + Swedish keyboard optimization.
+Mode-based tiling window manager for macOS with Hyperkey + Swedish keyboard optimization.
 
 ## Installation
 
 ```bash
 # Install AeroSpace
 brew install --cask nikitabobko/tap/aerospace
+
+# Install JankyBorders (window borders for visual feedback)
+brew tap FelixKratz/formulae
+brew install borders
 
 # Symlink config (from dotfiles repo root)
 stow aerospace
@@ -15,68 +19,140 @@ stow aerospace
 aerospace reload-config
 ```
 
-## Keybindings
+## Mode-Based Workflow
 
-### Navigation & Window Management
+This config uses **four binding modes** for organized window management:
+
+1. **Monitor Mode** (Hyperkey + m) - Multi-monitor operations
+2. **Window Mode** (Hyperkey + w) - Resize, join, float/tile
+3. **Assign Mode** (Hyperkey + a) - Move window to workspace
+4. **Service Mode** (Hyperkey + Esc) - Config, layout reset
+
+All modes exit with `Esc`, `Enter`, or `Space`.
+
+---
+
+## Main Mode (Default)
+
+### Navigation & Movement
 
 | Action | Binding |
 |--------|---------|
 | **Navigate windows** | Hyperkey + ← ↓ ↑ → |
-| **Move windows** | cmd+alt+ctrl + ← ↓ ↑ → |
-| **Resize (smart)** | Hyperkey + h (shrink) / l (grow) |
-| **Resize (vertical)** | Hyperkey + k (taller) / i (shorter) |
-| **Move workspace to monitor** | Hyperkey + § |
-| **Toggle layout** | cmd+alt+ctrl + § |
+| **Move windows (directional)** | cmd+alt+ctrl + ← ↓ ↑ → |
+| **Workspace back/forth** | Hyperkey + Tab |
 
 ### Workspaces
 
-**15 workspaces available:** 1-9, Q, W, E, R, T, Y
+**Available:** 1-9, Q, E, R, T, Y, G, B, V, N, C
 
 | Action | Binding |
 |--------|---------|
-| **Switch workspace** | Hyperkey + 1-9, q, w, e, r, t, y |
-| **Move to workspace** | cmd+alt+ctrl + 1-9, q, w, e, r, t, y |
-| **Workspace back/forth** | Hyperkey + Tab |
+| **Switch workspace** | Hyperkey + 1-9, q, e, r, t, y, g, b, v, n, c |
+| **Move window to workspace** | Hyperkey + a (enter Assign Mode) |
 
-### Service Mode
+### App Workspace Auto-Assignments
 
-Enter with: **Hyperkey + Escape**
+| Workspace | App | Binding |
+|-----------|-----|---------|
+| **2** | Spotify | Hyperkey + 2 |
+| **G** | ChatGPT | Hyperkey + g |
+| **B** | Chrome (Browser) | Hyperkey + b |
+| **C** | Slack (Communication) | Hyperkey + c |
+| **V** | VS Code | Hyperkey + v |
+| **N** | Apple Notes | Hyperkey + n |
+| **T** | Ghostty (Terminal) | Hyperkey + t |
+
+Apps automatically open on their designated workspace (but can be moved manually).
+
+---
+
+## Monitor Mode (Hyperkey + m)
+
+Multi-monitor workspace and window management.
+
+| Key | Action |
+|-----|--------|
+| `←` / `→` | Focus left/right monitor |
+| `Shift + ←` / `→` | Move workspace to prev/next monitor & exit |
+| `m` | Move current window to next monitor & exit |
+| `Esc` / `Enter` / `Space` | Exit to main mode |
+
+---
+
+## Assign Mode (Hyperkey + a)
+
+Move current window to a workspace (replaces awkward cmd+alt+ctrl combo).
+
+| Key | Action |
+|-----|--------|
+| `1-9` | Move window to workspace 1-9 & exit |
+| `q` / `e` / `r` / `t` / `y` | Move window to workspace Q/E/R/T/Y & exit |
+| `g` / `b` / `v` / `n` / `c` | Move window to workspace G/B/V/N/C & exit |
+| `Esc` / `Enter` / `Space` | Exit to main mode |
+
+---
+
+## Window Mode (Hyperkey + w)
+
+Window resizing, joining, and layout management.
+
+| Key | Action |
+|-----|--------|
+| `h` / `l` | Resize smart -/+ 50px |
+| `k` / `i` | Resize height +/- 50px |
+| `← ↓ ↑ →` | Join with window in direction & exit |
+| `f` | Toggle float/tile & exit |
+| `a` | Switch to accordion layout & exit |
+| `t` | Switch to tiles layout & exit |
+| `-` | Switch to horizontal layout (side-by-side) & exit |
+| `7` | Switch to vertical layout (stacked) & exit |
+| `b` | Balance all window sizes & exit |
+| `Esc` / `Enter` / `Space` | Exit to main mode |
+
+---
+
+## Service Mode (Hyperkey + Esc)
+
+Config reload, layout reset, and emergency operations.
 
 | Key | Action |
 |-----|--------|
 | `Esc` | Reload config & exit |
-| `r` | Reset layout & exit |
+| `r` | Flatten workspace tree (reset layout) & exit |
 | `t` | Toggle floating/tiling & exit |
 | `Backspace` | Close all windows except current & exit |
-| `← ↓ ↑ →` | Join window in direction & exit |
+
+---
 
 ## Design Rationale
 
+### Why Mode-Based?
+- **Ergonomic:** No awkward three-finger combos (cmd+alt+ctrl)
+- **Organized:** Related operations grouped together (monitor ops, window ops, assignments)
+- **Clean bindings:** Simple single-key commands inside modes
+- **No conflicts:** Modes free up main mode for navigation/workspaces
+- **Escape-friendly:** All modes exit the same way (Esc/Enter/Space)
+
 ### Why Hyperkey?
-- **Ergonomic:** Caps lock remapped = easier than Alt gymnastics
+- **Ergonomic:** Caps lock remapped via BetterTouchTool/Karabiner
 - **No conflicts:** Avoids Homerow (f, s, j) and Swedish keyboard special chars
-- **Two-tier system:**
-  - Hyperkey (cmd+shift+ctrl+alt) = frequent actions
-  - cmd+alt+ctrl = infrequent/destructive actions
+- **Single modifier:** One modifier (Hyperkey) for all window management
+- **Mode triggers:** Easy access to specialized modes (m, w, a, Esc)
 
 ### Swedish Keyboard Benefits
-- **§ key** mapped to layout toggle (left of 1)
+- **Arrow-based navigation** instead of hjkl (j taken by Homerow)
 - **No Alt conflicts** with special chars (@, $, [], {}, |, \)
-- **Clean arrow navigation** instead of hjkl (j taken by Homerow)
+- **§ key available** for other tools/configs (not used by AeroSpace)
 
 ## Configuration
 
 Config location: `~/.aerospace.toml` (symlinked via Stow)
 
+- **Workspaces:** 1-9, Q, E, R, T, Y, G, B, V, N, C (19 total)
 - **Gaps:** 5px inner/outer
 - **Layout:** Tiles (auto-orientation)
 - **Auto-start:** Enabled
-- **Mouse follows focus:** Enabled
-
-## Reverting to Default
-
-```bash
-git revert 09aec6f  # Revert to Alt-based default config
-```
-
-Default config commit: `46916b9`
+- **Mouse follows focus:** Enabled (monitor changes only)
+- **Window borders:** JankyBorders (lavender focus, dark gray inactive, 6px width)
+- **Monitor assignments:** Manual (use Monitor Mode to arrange workspaces across monitors)

@@ -90,7 +90,7 @@ run = 'move-node-to-workspace N'
 
 [[on-window-detected]]
 if.app-id = 'com.mitchellh.ghostty'
-run = 'move-node-to-workspace T'
+run = ['layout floating', 'move-node-to-workspace T']
 
 # Possible values: (qwerty|dvorak|colemak)
 # See https://nikitabobko.github.io/AeroSpace/guide#key-mapping
@@ -272,7 +272,7 @@ run = 'move-node-to-workspace T'
     shift-l = ['join-with right', 'mode main']
 
     # Layout switching
-    f = ['layout floating tiling', 'mode main']  # Float/tile toggle
+    f = ['layout floating', 'mode main']          # Switch to floating (overlapping windows)
     a = ['layout accordion', 'mode main']         # Switch to accordion
     t = ['layout tiles', 'mode main']             # Switch to tiles
     minus = ['layout tiles horizontal', 'mode main']  # Horizontal (side-by-side --)
@@ -293,5 +293,6 @@ run = 'move-node-to-workspace T'
 [mode.service.binding]
     esc = ['reload-config', 'mode main']
     r = ['flatten-workspace-tree', 'mode main'] # reset layout
-    t = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
+    f = ['layout floating', 'mode main']         # Switch to floating (overlapping windows)
+    t = ['layout tiles', 'mode main']            # Switch to tiles (tiling layout)
     backspace = ['close-all-windows-but-current', 'mode main']
