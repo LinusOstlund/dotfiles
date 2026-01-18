@@ -31,3 +31,29 @@ After modifying `.tmux.conf`:
 
 ### Config
 - Reload config: `Ctrl+Space` + `r`
+
+## FZF Popup Pickers
+
+These popups work everywhere, including inside editors (nano, vim, micro).
+
+### Tmux Navigation (`Ctrl+Space` → `t` → ...)
+| Key | Action |
+|-----|--------|
+| `s` | Switch sessions |
+| `w` | Switch windows (all sessions) |
+| `p` | Switch panes (current session) |
+
+### File Picker (`Ctrl+Space` → `f` → ...)
+| Key | Action |
+|-----|--------|
+| `f` | Pick files → outputs `@filepath` at cursor |
+
+### Git Objects (`Ctrl+Space` → `g` → ...)
+| Key | Action |
+|-----|--------|
+| `f` | Pick changed files |
+| `b` | Pick branches |
+| `h` | Pick commit hashes |
+| `s` | Pick stashes |
+
+All pickers support multi-select with `Tab`. Results are pasted at cursor position.
