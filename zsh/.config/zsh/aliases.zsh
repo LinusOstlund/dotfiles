@@ -13,6 +13,10 @@ alias tr="tmux source-file ~/.tmux.conf"
 alias r="zr && tr"
 # Launch tmux with dev layout
 alias tdev="~/dotfiles/tmux/layouts/dev.sh"
+# Open dotfiles repo in VS Code
+alias dotfiles="code ~/dotfiles"
+# Open dotfiles repo in Claude Code
+alias cdot="cd ~/dotfiles && claude"
 # List all tmux sessions
 alias tls="tmux ls"
 # Kill current tmux session

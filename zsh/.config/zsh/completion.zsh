@@ -2,6 +2,7 @@
 
 # Load completion system
 zmodload zsh/complist
+fpath=(~/.config/zsh/completions $fpath)
 autoload -U compinit; compinit
 _comp_options+=(globdots)   # include hidden files
 
