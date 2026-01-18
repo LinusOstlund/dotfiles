@@ -1,5 +1,17 @@
-På skakiga Bambiben gör jag mitt första repo för dotfiler. Jag har läst på internet att man ska använda GNU Stow. Och Claude Kod. Så det gör jag.
-Vibekodade dotfiler. Vad kan möjligen gå fel?
+# Dotfilsrepositorium
+
+På skakiga Bambiben gör jag mitt första repo för dotfiler. 
+Otroliga features finnes, bl.a:
+* GNU Stow för _symlänka_ filer hit och dit.
+* Claude Kod har skrivit det mesta, även om jag hittat det mesta i olika forum och andra dotfilsrepositorier. 
+
+Jag har följande här inne:
+* Ghostty med jättefina färger (klassisk _flavor-of-the-month_ grej, GPU-backad terminalgrej)
+* confad tmux (även om Ghostty typ gör tmux överflödigt)
+* starship prompt
+* confad zsh med massa goa alias
+* git grejer
+* mer. 
 
 ## Setup Instructions
 
