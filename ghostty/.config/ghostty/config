@@ -1,0 +1,12 @@
+# Ghostty Configuration
+
+# Window padding (margins)
+window-padding-x = 25
+window-padding-y = 25
+
+# Shell integration features
+shell-integration-features = cursor,sudo,title
+
+# Bell features for notifications when terminal is unfocused
+# On macOS: bounces dock icon and shows bell emoji in title
+bell-features = attention,title
