@@ -1,0 +1,10 @@
+{
+  "enabledPlugins": {
+    "ralph-wiggum@claude-code-plugins": true
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "npx -y ccstatusline@latest",
+    "padding": 0
+  }
+}

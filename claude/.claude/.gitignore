@@ -9,6 +9,5 @@ statsig/
 todos/
 ide/
 
-# Ignore local settings
-settings.json
+# Ignore local overrides
 *.local.md
